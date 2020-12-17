@@ -1,10 +1,12 @@
 # VHDL-Propagation-Delay-Measurement-Vivado
 Python &amp; Tcl Scripting for the Measurement of the Propagation Delay of VHDL files.
+
 by Viktoria Biliouri & Maria Ramirez Coralles
 
 Contents:
 
 -pd_script.py: the full process of the tcl script creation and the extraction of the prop. delay results.
+
 -ports.txt : the input and the output ports of the vhdl components we want to examine. 
 
 In order to execute the python script:
@@ -25,5 +27,7 @@ In order to execute the python script:
 After the execution :
 
 You will notice a new folder projectMV which contains the Vivado Project (.xpr) and all the files created by the Vivado
+
        -the projectMV/projectMV.srcs/reports/delay_info.csv is the timing report
+       
 Finally you will see in your local folder the Final_Report.csv file which contains the SLACK value of all the executions with different vhdl files.

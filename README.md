@@ -3,7 +3,7 @@ Python &amp; Tcl Scripting for the Measurement of the Propagation Delay of VHDL 
 
 by Viktoria Biliouri & Maria Ramirez Coralles
 
-----------------------------------------------This project is still in process-----------------------------------------------
+---------------------------------------This project is still in process-----------------------------------------------
 
 # Contents:
 

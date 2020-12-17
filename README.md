@@ -17,8 +17,8 @@ by Viktoria Biliouri & Maria Ramirez Coralles
 
 -Source Vivado from the comand prompt, using the command:
 
-       -for Linux: source /opt/Xilinx/Vivado/20XX.X/settings64.sh  //path can be modified depending on your vivado installation folder
-       -for Windows: 
+       -for Linux: $ source /opt/Xilinx/Vivado/20XX.X/settings64.sh  //XX.X : your vivado edtion
+       -for Windows: $        //path can be modified depending on your vivado installation folder
        
 -put the correct arguments in the script's execution command:
         

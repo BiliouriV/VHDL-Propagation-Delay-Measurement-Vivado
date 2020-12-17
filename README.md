@@ -3,7 +3,7 @@ Python &amp; Tcl Scripting for the Measurement of the Propagation Delay of VHDL 
 
 by Viktoria Biliouri & Maria Ramirez Coralles
 
--------------------------------------------------This project is still in process--------------------------------------------------------------
+----------------------------------------------This project is still in process-----------------------------------------------
 
 # Contents:
 
@@ -18,7 +18,7 @@ by Viktoria Biliouri & Maria Ramirez Coralles
 -Source Vivado from the comand prompt, using the command:
 
        -for Linux: $ source /opt/Xilinx/Vivado/20XX.X/settings64.sh  //XX.X : your vivado edtion
-       -for Windows: $        //path can be modified depending on your vivado installation folder
+       -for Windows: $ C:/Xilinx/Vivado/2020.1/settings64.bat    //path can be modified depending on your vivado installation folder
        
 -put the correct arguments in the script's execution command:
         

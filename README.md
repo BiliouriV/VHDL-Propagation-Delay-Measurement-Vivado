@@ -9,11 +9,13 @@ by Viktoria Biliouri & Maria Ramirez Coralles
 
 -pd_script.py: the full process of the tcl script creation and the extraction of the prop. delay results.
 
--ports.txt : the input and the output ports of the vhdl components we want to examine. 
+-ports.txt : the input and the output ports of the vhdl components we want to examine. ATTENTION!! THAT THE FILE IS STORED IN THE SAME LOCATION AS pd_script.py 
+
+-VHDL_SOURCE_FILES folder: contains all the vhdl templates of the vhdl components whose prop. delay we want to measure(most important the Add_3.vhd)
 
 # In order to execute the python script:
 
--Change the input and output ports in the ports.txt as desired (the current input and output ports correspond to our measurement needs).
+-Modify the input and output ports (add or reduce input and output bits) in the ports.txt as desired (the current input and output ports correspond to our measurement needs).
 
 -Source Vivado from the comand prompt, using the command:
 
@@ -32,4 +34,8 @@ You will notice a new folder projectMV which contains the Vivado Project (.xpr) 
 
        -the projectMV/projectMV.srcs/reports/delay_info.csv is the timing report
        
-Finally you will see in your local folder the Final_Report.csv file which contains the SLACK value of all the executions with different vhdl files.
+Also there will be in your local folder the tcl script named new_script.tcl which runs on vivado.
+
+In the folder with the VHDL_SOURCE_FILES you will notice a new vhd file, created from the vhd template according to the number of inputs' and outputs' bits defined in the ports.txt. This vhd file is the one that is executed by vivado and its propagation delay is outputed in the final report. The number added to the name of the vhd file, declares the number of bits in the input of the vhd file.
+       
+Finally you will see in your local folder the Final_Report.csv file, which contains the SLACK value of all the executions with different vhdl files. If a specific vhd file is executed more than once with the same number of inputs and outputs, the SLACK value is replaced.

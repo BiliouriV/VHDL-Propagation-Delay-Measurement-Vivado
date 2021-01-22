@@ -1,9 +1,11 @@
 #FIRST SOURCE VIVADO FROM COMMAND PROMPT. COMMAND: source /opt/Xilinx/Vivado/2018.3/settings64.sh
+#IN ORDER TO EXECUTE IT 1ST ARG = FULL FILE NAME WITH PATH AND 2ND ARG = PATH OF THE PROJECT = PATH OF THE SCRIPT.PY
 
 import os
 import sys
+import matplotlib.pyplot as plt
+import itertools
 
-##Step Missing: PASS THE INPUT AND OUTPUTS AS PARAMETERS!!
 ###definition of the tcl generator
 
 def generateTclFile(name, prj_path, inputs, outputs):
@@ -65,6 +67,7 @@ def generateTclFile(name, prj_path, inputs, outputs):
     f.write("/projectMV/projectMV.srcs/reports/delays_add3.csv\n")
     f.close
 
+##Creation of the vhd code with the specified inputs/outputs
 
 def change_vhd_ports(name, in1_num, in2_num, in3_num, out1_num):
 
@@ -74,7 +77,6 @@ def change_vhd_ports(name, in1_num, in2_num, in3_num, out1_num):
     tmp = name.split(".")
     tmp[0] = tmp[0] + "-" + str(out1_num)
     name = tmp[0] + ".vhd"
-    print(name)
     with open(name, "w") as f:
         for line in lines:
             if  "@in1_minus@" in line:
@@ -105,12 +107,42 @@ def change_vhd_ports(name, in1_num, in2_num, in3_num, out1_num):
                 f.write(line)
     return(name)
 
+##Plot function for the delay's results by scanning the csv report
+
+def plot_results(csv_file, name):
+
+    x_axis = list()
+    y_axis = list()
+    with open(csv_file, "r") as f:
+        lines = f.readlines()
+    f.close
+    for line in lines:
+        if name in line:
+            values = line.strip().split()
+            num = values[0].split("-")
+            ff = num[1].split(".")
+            x_axis.append(float(ff[0]))
+            y = values[1].split("-")
+            y_axis.append(float(y[1]))
+
+    print(x_axis)
+    print(y_axis)
+    new_x, new_y = zip(*sorted(zip(x_axis, y_axis)))
+    plt.xlabel('Number of port bits')
+    plt.ylabel('Propagation Delay')
+    plt.title('Propagation Delay Measurement of Adder 3')
+    plt.plot(new_x, new_y, color='green', linestyle='dashed', linewidth = 3, marker='o', markerfacecolor='blue', markersize=6)
+    plt.show()
+
+
+##main
+
 file_name = str(sys.argv[1])
 path = str(sys.argv[2])
 tmp = file_name.split("/")
 pure_name = tmp[len(tmp)-1]
-print(pure_name)
-
+tmp2 = pure_name.split(".")
+clr_name = tmp2[0]
 
 ####Search for the inputs and outputs in ports.txt
 in1_num = 0
@@ -141,19 +173,18 @@ with open("ports.txt") as openfile:
             outputs = outputs[0]
 
 
-#cmd = "source opt/Xilinx/Vivado/2018.3/settings64.sh"
-#os.system(cmd)
+
 vhd_name = change_vhd_ports(file_name, in1_num, in2_num, in3_num, out1_num)
 generateTclFile(vhd_name, path, inputs, outputs)
-#####Execute script in Vivado
+
+####Execute script in Vivado
 cmd = "vivado -mode batch -source newscript.tcl"
 os.system(cmd)
 
 tmp = vhd_name.split("/")
 pure_name = tmp[len(tmp)-1]
-print(pure_name)
 
-#####Take the SLACK
+#####Take the SLACK and output it to the csv report
 f=open("Final_Report.csv", "a")
 f.close
 
@@ -175,4 +206,12 @@ with open("projectMV/projectMV.srcs/reports/delays_add3.csv") as openfile:
             vals = line.strip().split()
             f.write(vals[3])
             f.write("\n")
+
 f.close
+
+with open("Final_Report.csv", "r") as f:
+    lines = f.readlines()
+f.close
+
+#plot_results
+plot_results("Final_Report.csv", clr_name)

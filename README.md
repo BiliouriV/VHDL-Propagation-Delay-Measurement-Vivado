@@ -3,7 +3,6 @@ Python &amp; Tcl Scripting for the Measurement of the Propagation Delay of VHDL 
 
 by Viktoria Biliouri & Maria Ramirez Coralles
 
----------------------------------------This project is still in process-----------------------------------------------
 
 # Contents:
 
@@ -12,6 +11,8 @@ by Viktoria Biliouri & Maria Ramirez Coralles
 -ports.txt : the input and the output ports of the vhdl components we want to examine. ATTENTION!! THAT THE FILE IS STORED IN THE SAME LOCATION AS pd_script.py 
 
 -VHDL_SOURCE_FILES folder: contains all the vhdl templates of the vhdl components whose prop. delay we want to measure(most important the Add_3.vhd)
+
+-Final_Report.csv : You should use this file only if you want to plot the Adder-3 Results for different bit number directly. Otherwise, it is not necessary -> the script will create a new one.
 
 # In order to execute the python script:
 
@@ -28,7 +29,11 @@ by Viktoria Biliouri & Maria Ramirez Coralles
        -argv[2] : the path where you want to store the Vivado Project 
                   ATTENTION!!!: WE RECOMMEND THAT THIS PATH IS THE SAME WITH THE PYTHON SCRIPT'S FULL PATH :)
                   
+-make sure you have installed the matplotlib library for python
+                  
 # After the execution :
+
+First of all, the timing results of the file you want to check, will be plotted.
 
 You will notice a new folder projectMV which contains the Vivado Project (.xpr) and all the files created by the Vivado
 

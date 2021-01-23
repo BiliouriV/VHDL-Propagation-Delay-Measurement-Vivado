@@ -1,7 +1,7 @@
 # VHDL Propagation Delay Measurement using Vivado
 Python &amp; Tcl Scripting for the Measurement of the Propagation Delay of VHDL files.
 
-by Viktoria Biliouri & Maria Ramirez Coralles
+by Viktoria Biliouri & Maria Ramirez Corrales
 
 
 # Contents:

@@ -6,7 +6,7 @@ import sys
 import matplotlib.pyplot as plt
 import itertools
 
-###definition of the tcl generator
+###definition of the TCL generator
 
 def generateTclFile(name, prj_path, inputs, outputs):
 
